@@ -2,7 +2,9 @@
 
 ## 2.1 Initialize the React Native
 
-### how run react-native on android device
+https://academy.notjust.dev/products/instagram-clone/categories/2149458147/posts/2154542669
+
+### troubleshotting: how run react-native on android device
 
 https://reactnative.dev/docs/running-on-device#1-enable-debugging-over-usb-2
 
