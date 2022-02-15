@@ -63,8 +63,8 @@ const App = () => {
             [
               { user: "user2", comment: "nice nice nice nice nice nice nice nice nice nice nice nice nice nice nice nice " },
               { user: "user._3", comment: "cute cute cute cute " },
-            ].map(({ user, comment }) => (
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
+            ].map(({ user, comment }, idx) => (
+              <View key={`comment-${user}-${idx}`} style={{ flexDirection: "row", alignItems: "center" }}>
                 <Text style={[styles.text, { flex: 1 }]}>
                   <Text style={styles.textBold}>{user}</Text>
                   {` ${comment}`}
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   headerUserName: {
     fontWeight: fonts.weight.bold,
-    fontColor: colors.black,
+    color: colors.black,
   },
   headerThreeDots: {
     marginLeft: "auto"
