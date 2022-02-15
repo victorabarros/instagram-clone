@@ -20,3 +20,14 @@ sdk.dir=/home/victor/Android/Sdk
 ```
 
 finally run `npx react-native start` and in a separate terminal run `npx react-native run-android`
+
+## 2.2
+
+theme
+
+## 2.3
+
+vector icons
+https://oblador.github.io/react-native-vector-icons/
+
+## 3.1
