@@ -1,11 +1,11 @@
 import React from "react"
-import { Image, StyleSheet, Text, View } from "react-native"
+import { Image, Text, View } from "react-native"
 import Entypo from "react-native-vector-icons/Entypo"
 import AntDesign from "react-native-vector-icons/AntDesign"
 import Feather from "react-native-vector-icons/Feather"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import colors from "../../theme/color"
-import fonts from "../../theme/fonts"
+import { styles } from "./styles"
 
 
 export const FeedPost = () => {
@@ -80,53 +80,4 @@ export const FeedPost = () => {
 
     </View>
   )
-
 }
-
-const styles = StyleSheet.create({
-  container: {
-  },
-  headerContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 10,
-  },
-  headerAvatar: {
-    height: 50,
-    aspectRatio: 1,
-    borderRadius: 25,
-    marginRight: 10,
-  },
-  headerUserName: {
-    fontWeight: fonts.weight.bold,
-    color: colors.black,
-  },
-  headerThreeDots: {
-    marginLeft: "auto"
-  },
-  media: {
-    width: "100%",
-    aspectRatio: 1,
-  },
-  footerContainer: {
-    padding: 10,
-  },
-  footerIconContainer: {
-    flexDirection: "row",
-    marginBottom: 5,
-  },
-  footerIcon: {
-    marginHorizontal: 5,
-  },
-  footerBookmark: {
-    marginHorizontal: 5,
-    marginLeft: "auto",
-  },
-  text: {
-    color: colors.black,
-    lineHeight: 18,
-  },
-  textBold: {
-    fontWeight: fonts.weight.bold,
-  },
-})
