@@ -8,15 +8,15 @@ import { styles } from "./styles"
 
 export interface IComment {
   id?: string;
-  text: string;
+  comment: string;
   user: IUser;
 }
 
-export const Comment = ({ user: { username }, text }: IComment) => {
+export const Comment = ({ user: { username }, comment }: IComment) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>
-        <Text style={styles.textBold}>{username}</Text>{" "}{text}
+        <Text style={styles.textBold}>{username}</Text>{" "}{comment}
       </Text>
       <AntDesign name={"hearto"} style={styles.footerIcon} color={colors.black} />
     </View>
