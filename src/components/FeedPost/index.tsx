@@ -7,6 +7,7 @@ import Ionicons from "react-native-vector-icons/Ionicons"
 import colors from "../../theme/color"
 import { styles } from "./styles"
 import { Comment, IComment } from "../Comment"
+import { DoublePressable } from "../DoublePressable"
 
 export interface IPost {
   id: string;
@@ -56,12 +57,12 @@ export const FeedPost = (
 
       {/* media */}
       {/* TODO handle as double tap */}
-      <Pressable onPress={() => setIsLiked(!isLiked)}>
+      <DoublePressable onDoublePress={() => setIsLiked(!isLiked)}>
         <Image
           source={{ uri: image }}
           style={styles.media}
         />
-      </Pressable>
+      </DoublePressable>
 
       {/* footer */}
       <View style={styles.footerContainer}>
