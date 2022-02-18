@@ -35,10 +35,9 @@ export const FeedPost = (
   { comments, createdAt, description, id, image, nofComments, nofLikes, user }: IPost
 ) => {
   const isLiked = false
-  const userName = "UserName.Test"
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} key={`post-${id}`}>
       {/* header */}
       <View style={styles.headerContainer}>
         <Image
@@ -102,7 +101,7 @@ export const FeedPost = (
         {
           comments
             .map(comment =>
-              <Comment {...comment} />
+              <Comment key={`post-${id}-comment-${comment.id}`} {...comment} />
             )
         }
         {/* date */}

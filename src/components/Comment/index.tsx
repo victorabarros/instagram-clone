@@ -7,18 +7,16 @@ import { styles } from "./styles"
 
 
 export interface IComment {
-  id?: string;
+  id: string;
   comment: string;
   user: IUser;
 }
 
-export const Comment = ({ user: { username }, comment }: IComment) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>
-        <Text style={styles.textBold}>{username}</Text>{" "}{comment}
-      </Text>
-      <AntDesign name={"hearto"} style={styles.footerIcon} color={colors.black} />
-    </View>
-  )
-}
+export const Comment = ({ id, user: { username }, comment }: IComment) => (
+  <View style={styles.container} key={`comment-${id}`}>
+    <Text style={styles.text}>
+      <Text style={styles.textBold}>{username}</Text>{" "}{comment}
+    </Text>
+    <AntDesign name={"hearto"} style={styles.footerIcon} color={colors.black} />
+  </View>
+)
