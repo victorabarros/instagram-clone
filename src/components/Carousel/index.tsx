@@ -9,7 +9,7 @@ export interface ICarousel {
   onDoublePress?: () => void
 }
 
-export const Carousel = ({ images, onDoublePress }: ICarousel) => {
+export const Carousel = ({ images, onDoublePress = () => { } }: ICarousel) => {
   const [imageIndex, setImageIndex] = useState(0)
   let flatListRef = useRef<FlatList>(null)
 

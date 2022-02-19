@@ -9,6 +9,7 @@ import { styles } from "./styles"
 import { Comment, IComment } from "../Comment"
 import { DoublePressable } from "../DoublePressable"
 import { Carousel } from "../Carousel"
+import { VideoPlayer } from "../Video"
 
 export interface IPost {
   id: string;
@@ -28,6 +29,7 @@ export interface IUser {
   username: string;
   image?: string;
   images?: string[];
+  video?: string;
   // name: string;
   bio?: string;
   posts?: IPost[];
@@ -35,7 +37,7 @@ export interface IUser {
 }
 
 export const FeedPost = (
-  { comments, createdAt, description, id, image, images, nofComments, nofLikes, user }: IPost
+  { comments, createdAt, description, id, image, images, video, nofComments, nofLikes, user }: IPost
 ) => {
   const nofLines = 3
   const [showDescription, setShowDescription] = useState(false)
@@ -55,6 +57,13 @@ export const FeedPost = (
       return (
         <Carousel
           images={images}
+          onDoublePress={() => setIsLiked(!isLiked)}
+        />
+      )
+    } else if (video) {
+      return (
+        <VideoPlayer
+          uri={"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"}
           onDoublePress={() => setIsLiked(!isLiked)}
         />
       )
