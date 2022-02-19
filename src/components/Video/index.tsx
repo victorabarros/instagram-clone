@@ -7,10 +7,12 @@ import { DoublePressable } from "../DoublePressable"
 export interface IVideoPlayer {
   uri: string
   onDoublePress?: () => void
+  paused: boolean
 }
 
-export const VideoPlayer = ({ uri, onDoublePress = () => { } }: IVideoPlayer) => {
+export const VideoPlayer = ({ uri, paused, onDoublePress = () => { } }: IVideoPlayer) => {
   const [isMuted, setIsMuted] = useState(true)
+
   return (
     <View>
       <DoublePressable onDoublePress={onDoublePress}>
@@ -19,6 +21,7 @@ export const VideoPlayer = ({ uri, onDoublePress = () => { } }: IVideoPlayer) =>
           style={styles.player}
           resizeMode="cover"
           muted={isMuted}
+          paused={paused}
           repeat
         />
       </DoublePressable>

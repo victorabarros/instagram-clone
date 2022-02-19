@@ -12,32 +12,33 @@ import { Carousel } from "../Carousel"
 import { VideoPlayer } from "../Video"
 
 export interface IPost {
-  id: string;
-  createdAt: string;
-  image?: string;
-  images?: string[];
-  video?: string;
-  description: string;
-  user: IUser;
-  nofComments: number;
-  nofLikes: number;
-  comments: IComment[];
+  id: string
+  createdAt: string
+  image?: string
+  images?: string[]
+  video?: string
+  description: string
+  user: IUser
+  nofComments: number
+  nofLikes: number
+  comments: IComment[]
+  isActivated: boolean
 }
 
 export interface IUser {
-  id?: string;
-  username: string;
-  image?: string;
-  images?: string[];
-  video?: string;
-  // name: string;
-  bio?: string;
-  posts?: IPost[];
-  website?: string;
+  id?: string
+  username: string
+  image?: string
+  images?: string[]
+  video?: string
+  // name: string
+  bio?: string
+  posts?: IPost[]
+  website?: string
 }
 
 export const FeedPost = (
-  { comments, createdAt, description, id, image, images, video, nofComments, nofLikes, user }: IPost
+  { comments, createdAt, description, id, image, images, video, nofComments, nofLikes, user, isActivated }: IPost
 ) => {
   const nofLines = 3
   const [showDescription, setShowDescription] = useState(false)
@@ -63,8 +64,9 @@ export const FeedPost = (
     } else if (video) {
       return (
         <VideoPlayer
-          uri={"http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"}
+          uri={video}
           onDoublePress={() => setIsLiked(!isLiked)}
+          paused={!isActivated}
         />
       )
     }
