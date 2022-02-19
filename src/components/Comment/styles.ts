@@ -4,11 +4,13 @@ import fonts from "../../theme/fonts"
 
 export const styles = StyleSheet.create({
   container: {
+    flex: 1,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
   footerIcon: {
     marginHorizontal: 5,
+    marginLeft: "auto"
   },
   text: {
     flex: 1,
@@ -17,5 +19,18 @@ export const styles = StyleSheet.create({
   },
   textBold: {
     fontWeight: fonts.weight.bold,
+  },
+  avatar: {
+    width: 30,
+    aspectRatio: 1,
+    borderRadius: 25,
+    marginRight: 5,
+  },
+  footer: {
+    flexDirection: 'row',
+    marginBottom: 10,
+  },
+  footerText: {
+    marginRight: 10,
   },
 })
