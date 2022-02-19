@@ -13,7 +13,7 @@ import { VideoPlayer } from "../Video"
 
 export interface IPost {
   id: string
-  createdAt: string
+  createdAt: string // TODO accept date/datetime as well
   image?: string
   images?: string[]
   video?: string
@@ -37,40 +37,27 @@ export interface IUser {
   website?: string
 }
 
-export const FeedPost = (
-  { comments, createdAt, description, id, image, images, video, nofComments, nofLikes, user, isActivated }: IPost
-) => {
+export const FeedPost = (props: IPost) => {
+  const { comments, createdAt, description, id, image, images, video, nofComments, nofLikes, user, isActivated } = props
   const nofLines = 3
   const [showDescription, setShowDescription] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
 
-  const media = () => {
+  const likePost = () => setIsLiked(!isLiked) // TODO request like/dislike to api
+
+  const media = (): Element => {
     if (image) {
       return (
-        <DoublePressable onDoublePress={() => setIsLiked(!isLiked)}>
-          <Image
-            source={{ uri: image }}
-            style={styles.media}
-          />
+        <DoublePressable onDoublePress={likePost}>
+          <Image source={{ uri: image }} style={styles.media} />
         </DoublePressable>
       )
     } else if (images) {
-      return (
-        <Carousel
-          images={images}
-          onDoublePress={() => setIsLiked(!isLiked)}
-        />
-      )
+      return <Carousel images={images} onDoublePress={likePost} />
     } else if (video) {
-      return (
-        <VideoPlayer
-          uri={video}
-          onDoublePress={() => setIsLiked(!isLiked)}
-          paused={!isActivated}
-        />
-      )
+      return <VideoPlayer uri={video} onDoublePress={likePost} paused={!isActivated} />
     }
-    return null
+    return <></>
   }
 
   return (
@@ -100,7 +87,7 @@ export const FeedPost = (
             size={24}
             style={styles.footerIcon}
             color={isLiked ? colors.accent : colors.black}
-            onPress={() => setIsLiked(!isLiked)}
+            onPress={likePost}
           />
           <Ionicons
             name="chatbubble-outline"
