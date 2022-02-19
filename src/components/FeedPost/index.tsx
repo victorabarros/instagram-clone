@@ -8,6 +8,7 @@ import colors from "../../theme/color"
 import { styles } from "./styles"
 import { Comment, IComment } from "../Comment"
 import { DoublePressable } from "../DoublePressable"
+import { Carousel } from "../Carousel"
 
 export interface IPost {
   id: string;
@@ -26,6 +27,7 @@ export interface IUser {
   id?: string;
   username: string;
   image?: string;
+  images?: string[];
   // name: string;
   bio?: string;
   posts?: IPost[];
@@ -33,11 +35,32 @@ export interface IUser {
 }
 
 export const FeedPost = (
-  { comments, createdAt, description, id, image, nofComments, nofLikes, user }: IPost
+  { comments, createdAt, description, id, image, images, nofComments, nofLikes, user }: IPost
 ) => {
   const nofLines = 3
   const [showDescription, setShowDescription] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
+
+  const media = () => {
+    if (image) {
+      return (
+        <DoublePressable onDoublePress={() => setIsLiked(!isLiked)}>
+          <Image
+            source={{ uri: image }}
+            style={styles.media}
+          />
+        </DoublePressable>
+      )
+    } else if (images) {
+      return (
+        <Carousel
+          images={images}
+          onDoublePress={() => setIsLiked(!isLiked)}
+        />
+      )
+    }
+    return null
+  }
 
   return (
     <View style={styles.container} key={`post-${id}`}>
@@ -56,13 +79,7 @@ export const FeedPost = (
       </View>
 
       {/* media */}
-      {/* TODO handle as double tap */}
-      <DoublePressable onDoublePress={() => setIsLiked(!isLiked)}>
-        <Image
-          source={{ uri: image }}
-          style={styles.media}
-        />
-      </DoublePressable>
+      {media()}
 
       {/* footer */}
       <View style={styles.footerContainer}>
