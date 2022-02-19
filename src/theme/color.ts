@@ -10,6 +10,6 @@ const colors = {
   black: 'black',
   grey: 'grey',
   lightgrey: 'lightgrey',
-};
+}
 
-export default colors;
+export default colors

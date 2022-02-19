@@ -1,11 +1,11 @@
-import React, { useRef, useState } from "react";
-import { FlatList, Image, Pressable, useWindowDimensions, View, ViewabilityConfig } from "react-native";
+import React, { useRef, useState } from "react"
+import { FlatList, Image, Pressable, useWindowDimensions, View, ViewabilityConfig } from "react-native"
 import { StyleSheet } from "react-native"
-import colors from "../../theme/color";
-import { DoublePressable } from "../DoublePressable";
+import colors from "../../theme/color"
+import { DoublePressable } from "../DoublePressable"
 
 export interface ICarousel {
-  images: string[];
+  images: string[]
   onDoublePress?: () => void
 }
 
@@ -43,7 +43,7 @@ export const Carousel = ({ images, onDoublePress = () => { } }: ICarousel) => {
             key={`dot-${idx}`}
             style={[styles.dot, imageIndex === idx && { opacity: .8 }]}
             onPress={() => {
-              flatListRef.current?.scrollToIndex({ animated: true, index: idx });
+              flatListRef.current?.scrollToIndex({ animated: true, index: idx })
               setImageIndex(idx)
             }}
           />

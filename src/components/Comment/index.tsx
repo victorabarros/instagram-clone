@@ -7,9 +7,9 @@ import { styles } from "./styles"
 
 
 export interface IComment {
-  id: string;
-  comment: string;
-  user: IUser;
+  id: string
+  comment: string
+  user: IUser
 }
 
 export const Comment = ({ id, user: { username }, comment }: IComment) => (
