@@ -3,6 +3,8 @@ import { FlatList, Image, StyleSheet, View } from "react-native"
 import user from "../../assets/data/user.json"
 import { ProfileHeader } from "./ProfileHeader"
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
+import { useNavigation, useRoute } from "@react-navigation/native"
+import { MyProfileNavigationProp, MyProfileRouteProp, UserProfileNavigationProp, UserProfileRouteProp } from "../../navigation/types"
 
 const GridItem = ({ post }: any) => (
   <View style={styles.imageContainer}>
@@ -18,20 +20,27 @@ const GridItem = ({ post }: any) => (
   </View>
 )
 
-const ProfileScreen = () => (
-  <FlatList
-    ListHeaderComponent={ProfileHeader}
-    data={user.posts}
-    numColumns={3}
-    renderItem={
-      ({ item }) => <GridItem key={`post-${item.id}`} post={item} />
-    }
-    showsVerticalScrollIndicator={false}
-    style={styles.root}
-  />
-)
+export const ProfileScreen = () => {
+  const route = useRoute<UserProfileRouteProp | MyProfileRouteProp>()
+  const navigation = useNavigation<UserProfileNavigationProp | MyProfileNavigationProp>()
 
-export default ProfileScreen
+  // const { userId } = route.params
+  const userId = route.params?.userId
+  // fetch user with userId
+
+  return (
+    <FlatList
+      ListHeaderComponent={ProfileHeader}
+      data={user.posts}
+      numColumns={3}
+      renderItem={
+        ({ item }) => <GridItem key={`post-${item.id}`} post={item} />
+      }
+      showsVerticalScrollIndicator={false}
+      style={styles.root}
+    />
+  )
+}
 
 const styles = StyleSheet.create({
   root: {

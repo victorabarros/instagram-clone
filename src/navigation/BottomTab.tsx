@@ -6,8 +6,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { HomeStack } from "./HomeStack";
 import { ProfileStack } from "./ProfileStack";
+import { BottomTabNavigatorParamList } from "./types";
 
-const { Navigator, Screen } = createBottomTabNavigator()
+const { Navigator, Screen } = createBottomTabNavigator<BottomTabNavigatorParamList>()
 
 export const BottomTab = () => {
   return (
@@ -15,7 +16,7 @@ export const BottomTab = () => {
       <Screen name="HomeStack" component={HomeStack} options={{ tabBarIcon: HomeStackIcon }} />
       <Screen name="Search" component={() => (<></>)} options={{ tabBarIcon: SearchIcon }} />
       <Screen name="Upload" component={() => (<></>)} options={{ tabBarIcon: UploadIcon }} />
-      <Screen name="Notification" component={() => (<></>)} options={{ tabBarIcon: NotificationIcon }} />
+      <Screen name="Notifications" component={() => (<></>)} options={{ tabBarIcon: NotificationIcon }} />
       <Screen name="MyProfile" component={ProfileStack} options={{ tabBarIcon: MyProfileIcon }} />
     </Navigator>
   )

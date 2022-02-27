@@ -5,8 +5,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import HomeScreen from "../screens/HomeScreen"
 import { BottomTab } from "./BottomTab"
 import CommentScreen from "../screens/CommentScreen"
+import { RootNavigatorParamList } from "./types"
 
-const { Navigator, Screen } = createNativeStackNavigator()
+const { Navigator, Screen } = createNativeStackNavigator<RootNavigatorParamList>()
 
 export const Navigation = () => {
   return (

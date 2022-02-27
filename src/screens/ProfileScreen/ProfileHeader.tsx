@@ -1,11 +1,14 @@
+import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { Image, StyleSheet, Text, View } from "react-native"
 import user from "../../assets/data/user.json"
 import { InsButton } from "../../components/InsButton"
+import { ProfileNavigationProp } from "../../navigation/types"
 
 
 export const ProfileHeader = () => {
   const { image, posts, followers, following } = user
+  const navigation = useNavigation<ProfileNavigationProp>()
 
   return (
     <View style={styles.root}>
@@ -37,7 +40,7 @@ export const ProfileHeader = () => {
 
       {/* buttons */}
       <View style={styles.buttonsContainer}>
-        <InsButton label="Edit Profile" onPress={() => console.log("button")} />
+        <InsButton label="Edit Profile" onPress={() => navigation.navigate("EditProfile")} />
         <InsButton label="Another Button" onPress={() => console.log("button")} />
       </View>
     </View>

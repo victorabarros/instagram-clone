@@ -1,10 +1,9 @@
 import React from "react"
 import { ProfileScreen } from "../screens/ProfileScreen"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import logo from "../assets/images/logo.png"
-import { Image } from "react-native"
+import { ProfileStackNavigatorParamList } from "./types"
 
-const { Navigator, Screen } = createNativeStackNavigator()
+const { Navigator, Screen } = createNativeStackNavigator<ProfileStackNavigatorParamList>()
 
 export const ProfileStack = () => {
   return (
@@ -18,5 +17,3 @@ export const ProfileStack = () => {
     </Navigator>
   )
 }
-
-const HeaderTitle = () => <Image source={logo} resizeMode="contain" style={{ width: 150, height: 40 }} />

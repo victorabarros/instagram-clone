@@ -10,6 +10,8 @@ import { Comment, IComment } from "../Comment"
 import { DoublePressable } from "../DoublePressable"
 import { Carousel } from "../Carousel"
 import { VideoPlayer } from "../Video"
+import { useNavigation } from "@react-navigation/native"
+import { FeedNavigationProp } from "../../navigation/types"
 
 export interface IPost {
   id: string
@@ -26,7 +28,7 @@ export interface IPost {
 }
 
 export interface IUser {
-  id?: string
+  id: string
   username: string
   image?: string
   images?: string[]
@@ -42,6 +44,7 @@ export const FeedPost = (props: IPost) => {
   const nofLines = 3
   const [showDescription, setShowDescription] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
+  const navigation = useNavigation<FeedNavigationProp>()
 
   const likePost = () => setIsLiked(!isLiked) // TODO request like/dislike to api
 
@@ -68,7 +71,10 @@ export const FeedPost = (props: IPost) => {
           source={{ uri: user.image }}
           style={styles.headerAvatar}
         />
-        <Text style={styles.headerUserName}>{user.username}</Text>
+        <Text
+          style={styles.headerUserName}
+          onPress={() => navigation.navigate("Profile", { userId: user.id })}
+        >{user.username}</Text>
         <Entypo
           name="dots-three-horizontal"
           size={16}
@@ -126,7 +132,9 @@ export const FeedPost = (props: IPost) => {
         </Text>
 
         {/* comments */}
-        <Text>View all {nofComments} comments</Text>
+        <Text
+          onPress={() => navigation.navigate("Comments", { postId: id })}
+        >View all {nofComments} comments</Text>
         {
           comments
             .map(comment =>
