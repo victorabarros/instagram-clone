@@ -30,4 +30,6 @@ theme
 vector icons
 https://oblador.github.io/react-native-vector-icons/
 
-## 3.1
+##
+
+continue from https://academy.notjust.dev/products/instagram-clone/categories/2149798312/posts/2155781926
