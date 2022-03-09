@@ -7,5 +7,6 @@ mkdir ~/.aws
 cp .infra/.aws/* ~/.aws/
 
 npm install -g @aws-amplify/cli
+curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
 
 bash
