@@ -5,7 +5,7 @@ import { SocialSignInButtons } from './components/SocialSignInButtons'
 import { useNavigation } from '@react-navigation/core'
 import { useForm } from 'react-hook-form'
 import colors from '../../theme/color'
-import { SignUpNavigationProp } from '../../navigation/types'
+import { SignUpNavigationProp } from '../../types/navigation'
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/

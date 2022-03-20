@@ -6,7 +6,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { HomeStack } from "./HomeStack";
 import { ProfileStack } from "./ProfileStack";
-import { BottomTabNavigatorParamList } from "./types";
+import { BottomTabNavigatorParamList } from "../types/navigation";
 
 const { Navigator, Screen } = createBottomTabNavigator<BottomTabNavigatorParamList>()
 

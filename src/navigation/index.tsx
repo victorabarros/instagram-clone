@@ -5,8 +5,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import HomeScreen from "../screens/HomeScreen"
 import { BottomTab } from "./BottomTab"
 import CommentScreen from "../screens/CommentScreen"
-import { RootNavigatorParamList } from "./types"
+import { RootNavigatorParamList } from "../types/navigation"
 import { Text } from "react-native"
+import AuthStackNavigator from "./AuthStackNavigator"
 
 const { Navigator, Screen } = createNativeStackNavigator<RootNavigatorParamList>()
 
@@ -33,7 +34,9 @@ const linking: LinkingOptions<RootNavigatorParamList> = {
 export const Navigation = () => {
   return (
     <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
-      <Navigator screenOptions={{ headerShown: false }}>
+      <Navigator initialRouteName="Auth" screenOptions={{ headerShown: false }}>
+
+        <Screen name="Auth" component={AuthStackNavigator} />
 
         <Screen name="Home" component={BottomTab} />
 

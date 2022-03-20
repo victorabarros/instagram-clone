@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import HomeScreen from "../screens/HomeScreen"
 import logo from "../assets/images/logo.png"
 import { Image } from "react-native"
-import { HomeStackNavigatorParamList } from "./types"
+import { HomeStackNavigatorParamList } from "../types/navigation"
 
 const { Navigator, Screen } = createNativeStackNavigator<HomeStackNavigatorParamList>()
 

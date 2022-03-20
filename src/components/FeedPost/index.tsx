@@ -11,7 +11,7 @@ import { DoublePressable } from "../DoublePressable"
 import { Carousel } from "../Carousel"
 import { VideoPlayer } from "../Video"
 import { useNavigation } from "@react-navigation/native"
-import { FeedNavigationProp } from "../../navigation/types"
+import { FeedNavigationProp } from "../../types/navigation"
 
 export interface IPost {
   id: string

@@ -3,7 +3,7 @@ import React from "react"
 import { Image, StyleSheet, Text, View } from "react-native"
 import user from "../../assets/data/user.json"
 import { InsButton } from "../../components/InsButton"
-import { ProfileNavigationProp } from "../../navigation/types"
+import { ProfileNavigationProp } from "../../types/navigation"
 
 
 export const ProfileHeader = () => {

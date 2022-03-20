@@ -5,7 +5,7 @@ import { CustomButton } from './components/CustomButton'
 import { useNavigation } from '@react-navigation/core'
 import { useForm } from 'react-hook-form'
 import { useRoute } from '@react-navigation/native'
-import { ConfirmEmailNavigationProp, ConfirmEmailRouteProp } from '../../navigation/types'
+import { ConfirmEmailNavigationProp, ConfirmEmailRouteProp } from '../../types/navigation'
 
 type ConfirmEmailData = {
   username: string

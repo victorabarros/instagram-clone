@@ -4,7 +4,7 @@ import user from "../../assets/data/user.json"
 import { ProfileHeader } from "./ProfileHeader"
 import MaterialIcons from "react-native-vector-icons/MaterialIcons"
 import { useNavigation, useRoute } from "@react-navigation/native"
-import { MyProfileNavigationProp, MyProfileRouteProp, UserProfileNavigationProp, UserProfileRouteProp } from "../../navigation/types"
+import { MyProfileNavigationProp, MyProfileRouteProp, UserProfileNavigationProp, UserProfileRouteProp } from "../../types/navigation"
 
 const GridItem = ({ post }: any) => (
   <View style={styles.imageContainer}>

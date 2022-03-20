@@ -4,7 +4,7 @@ import { SignUpScreen } from '../screens/Auth/SignUpScreen'
 import { ConfirmEmailScreen } from '../screens/Auth/ConfirmEmailScreen'
 import { ForgotPasswordScreen } from '../screens/Auth/ForgotPasswordScreen'
 import { NewPasswordScreen } from '../screens/Auth/NewPasswordScreen'
-import { AuthStackNavigatorParamList } from './types'
+import { AuthStackNavigatorParamList } from '../types/navigation'
 
 const Stack = createNativeStackNavigator<AuthStackNavigatorParamList>()
 

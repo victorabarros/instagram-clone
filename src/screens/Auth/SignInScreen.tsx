@@ -4,6 +4,7 @@ import {
   StyleSheet,
   useWindowDimensions,
   ScrollView,
+  Alert,
 } from 'react-native'
 import Logo from '../../assets/images/logo.png'
 import { FormInput } from './components/FormInput'
@@ -11,7 +12,8 @@ import { CustomButton } from './components/CustomButton'
 import { SocialSignInButtons } from './components/SocialSignInButtons'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
-import { SignInNavigationProp } from '../../navigation/types'
+import { SignInNavigationProp } from '../../types/navigation'
+import { Auth } from 'aws-amplify'
 
 type SignInData = {
   username: string
@@ -24,10 +26,14 @@ export const SignInScreen = () => {
 
   const { control, handleSubmit } = useForm<SignInData>()
 
-  const onSignInPressed = (data: SignInData) => {
-    console.log(data)
-    // validate user
-    // navigation.navigate('Home')
+  const onSignInPressed = async (data: SignInData) => {
+    try {
+      const response = await Auth.signIn(data.username, data.password)
+      // TODO save user in context
+      // navigation.navigate('Home')
+    } catch (e) {
+      Alert.alert('Ooops', (e as Error).message)
+    }
   }
 
   const onForgotPasswordPressed = () => {

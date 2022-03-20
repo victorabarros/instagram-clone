@@ -4,7 +4,7 @@ import { FormInput } from './components/FormInput'
 import { CustomButton } from './components/CustomButton'
 import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
-import { NewPasswordNavigationProp } from '../../navigation/types'
+import { NewPasswordNavigationProp } from '../../types/navigation'
 
 type NewPasswordType = {
   username: string
