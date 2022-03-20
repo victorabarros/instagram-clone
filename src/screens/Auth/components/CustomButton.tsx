@@ -1,13 +1,14 @@
 import React from 'react'
-import { Text, StyleSheet, Pressable } from 'react-native'
+import { Text, StyleSheet, Pressable, PressableProps, ActivityIndicator } from 'react-native'
 import colors from '../../../theme/color'
 
-interface ICustomButton {
+interface ICustomButton extends PressableProps {
   onPress: () => void
   text: string
   type?: 'PRIMARY' | 'SECONDARY' | 'TERTIARY'
   bgColor?: string
   fgColor?: string
+  loading?: boolean
 }
 
 export const CustomButton = ({
@@ -16,6 +17,8 @@ export const CustomButton = ({
   type = 'PRIMARY',
   bgColor,
   fgColor,
+  loading = false,
+  ...props
 }: ICustomButton) => {
   return (
     <Pressable
@@ -24,15 +27,24 @@ export const CustomButton = ({
         styles.container,
         styles[`container_${type}`],
         bgColor ? { backgroundColor: bgColor } : {},
-      ]}>
-      <Text
-        style={[
-          styles.text,
-          styles[`text_${type}`],
-          fgColor ? { color: fgColor } : {},
-        ]}>
-        {text}
-      </Text>
+      ]}
+      disabled={loading}
+      {...props}
+    >
+      {
+        loading ?
+          <ActivityIndicator size="small" />
+          :
+          <Text
+            style={[
+              styles.text,
+              styles[`text_${type}`],
+              fgColor ? { color: fgColor } : {},
+            ]}
+          >
+            {text}
+          </Text>
+      }
     </Pressable>
   )
 }
@@ -40,11 +52,13 @@ export const CustomButton = ({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
+    height: 45,
 
-    padding: 15,
     marginVertical: 5,
 
     alignItems: 'center',
+    justifyContent: 'center',
+
     borderRadius: 5,
   },
 

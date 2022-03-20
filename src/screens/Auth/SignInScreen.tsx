@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 import { SignInNavigationProp } from '../../types/navigation'
 import { Auth } from 'aws-amplify'
+import { useState } from 'react'
 
 type SignInData = {
   username: string
@@ -23,16 +24,20 @@ type SignInData = {
 export const SignInScreen = () => {
   const { height } = useWindowDimensions()
   const navigation = useNavigation<SignInNavigationProp>()
+  const [loading, setLoading] = useState<boolean>(false)
 
   const { control, handleSubmit } = useForm<SignInData>()
 
-  const onSignInPressed = async (data: SignInData) => {
+  const onSignInPressed = async ({ username, password }: SignInData) => {
+    setLoading(true)
     try {
-      const response = await Auth.signIn(data.username, data.password)
+      await Auth.signIn(username, password)
       // TODO save user in context
       // navigation.navigate('Home')
     } catch (e) {
       Alert.alert('Ooops', (e as Error).message)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -74,7 +79,11 @@ export const SignInScreen = () => {
           }}
         />
 
-        <CustomButton text="Sign In" onPress={handleSubmit(onSignInPressed)} />
+        <CustomButton
+          text="Sign In"
+          onPress={handleSubmit(onSignInPressed)}
+          loading={loading}
+        />
 
         <CustomButton
           text="Forgot password?"
