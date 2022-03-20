@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native'
 import { FormInput } from './components/FormInput'
 import { CustomButton } from './components/CustomButton'
 import { SocialSignInButtons } from './components/SocialSignInButtons'
@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/core'
 import { useForm } from 'react-hook-form'
 import colors from '../../theme/color'
 import { SignUpNavigationProp } from '../../types/navigation'
+import { Auth } from 'aws-amplify'
+import { useState } from 'react'
 
 const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -15,18 +17,28 @@ const USERNAME_REGEX = /^[a-zA-Z0-9_]*$/ // alphanumeric and underscore
 type SignUpData = {
   name: string
   email: string
-  username: string
+  // username: string
   password: string
   passwordRepeat: string
 }
 
 export const SignUpScreen = () => {
+  const [loading, setLoading] = useState<boolean>(false)
   const { control, handleSubmit, watch } = useForm<SignUpData>()
   const pwd = watch('password')
   const navigation = useNavigation<SignUpNavigationProp>()
 
-  const onRegisterPressed = ({ name, email, username, password }: SignUpData) => {
-    navigation.navigate('Confirm email', { username })
+  const onRegisterPressed = async ({ name, email, password }: SignUpData) => {
+    setLoading(true)
+    try {
+      console.log({ username: email, password, attributes: { name, email } })
+      await Auth.signUp({ username: email, password, attributes: { name, email } })
+      navigation.navigate('Confirm email', { username: email })
+    } catch (e) {
+      Alert.alert('Ooops', (e as Error).message)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const onSignInPress = () => {
@@ -63,6 +75,7 @@ export const SignUpScreen = () => {
           }}
         />
 
+        {/*
         <FormInput
           name="username"
           control={control}
@@ -83,6 +96,8 @@ export const SignUpScreen = () => {
             },
           }}
         />
+        */}
+
         <FormInput
           name="email"
           control={control}
@@ -119,6 +134,7 @@ export const SignUpScreen = () => {
         <CustomButton
           text="Register"
           onPress={handleSubmit(onRegisterPressed)}
+          loading={loading}
         />
 
         <Text style={styles.text}>
