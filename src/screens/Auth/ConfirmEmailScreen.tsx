@@ -42,10 +42,6 @@ export const ConfirmEmailScreen = () => {
     }
   }
 
-  const onSignInPress = () => {
-    navigation.navigate('Sign in')
-  }
-
   const onResendPress = async () => {
     setStage(Stage.RESENDING)
     try {
@@ -95,7 +91,7 @@ export const ConfirmEmailScreen = () => {
 
         <CustomButton
           text="Back to Sign in"
-          onPress={onSignInPress}
+          onPress={() => navigation.navigate('Sign in')}
           type="TERTIARY"
         />
       </View>

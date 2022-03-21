@@ -8,6 +8,7 @@ interface ICustomInput<ContentType> {
   rules?: {}
   placeholder?: string
   secureTextEntry?: boolean
+  defaultValue?: any
 }
 
 export function FormInput<ContentType>({
@@ -16,6 +17,7 @@ export function FormInput<ContentType>({
   rules = {},
   placeholder = "",
   secureTextEntry = false,
+  defaultValue = "",
 }: ICustomInput<ContentType>) {
   return (
     <Controller
@@ -49,6 +51,7 @@ export function FormInput<ContentType>({
           )}
         </>
       )}
+      defaultValue={defaultValue}
     />
   )
 }

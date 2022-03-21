@@ -40,10 +40,6 @@ export const SignUpScreen = () => {
     }
   }
 
-  const onSignInPress = () => {
-    navigation.navigate('Sign in')
-  }
-
   const onTermsOfUsePressed = () => {
     console.warn('onTermsOfUsePressed')
   }
@@ -151,7 +147,7 @@ export const SignUpScreen = () => {
 
         <CustomButton
           text="Have an account? Sign in"
-          onPress={onSignInPress}
+          onPress={() => navigation.navigate('Sign in')}
           type="TERTIARY"
         />
       </View>
