@@ -32,4 +32,4 @@ https://oblador.github.io/react-native-vector-icons/
 
 ##
 
-continue from https://academy.notjust.dev/products/instagram-clone/categories/2149798312/posts/2155781926
+- https://academy.notjust.dev/products/instagram-clone/categories/2149798312/posts/2155781928
