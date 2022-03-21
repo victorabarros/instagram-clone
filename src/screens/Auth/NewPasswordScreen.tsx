@@ -1,10 +1,11 @@
-import React from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native'
 import { FormInput } from './components/FormInput'
 import { CustomButton } from './components/CustomButton'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
-import { NewPasswordNavigationProp } from '../../types/navigation'
+import { NewPasswordNavigationProp, NewPasswordRouteProp } from '../../types/navigation'
+import { Auth } from 'aws-amplify'
 
 type NewPasswordType = {
   username: string
@@ -13,17 +14,24 @@ type NewPasswordType = {
 }
 
 export const NewPasswordScreen = () => {
+  const [loading, setLoading] = useState<boolean>(false)
   const { control, handleSubmit } = useForm<NewPasswordType>()
 
   const navigation = useNavigation<NewPasswordNavigationProp>()
 
-  const onSubmitPressed = (data: NewPasswordType) => {
-    console.warn(data)
-    navigation.navigate('Sign in')
-  }
+  const route = useRoute<NewPasswordRouteProp>()
+  const username = route.params?.username
 
-  const onSignInPress = () => {
-    navigation.navigate('Sign in')
+  const onSubmitPressed = async ({ username, code, password }: NewPasswordType) => {
+    setLoading(true)
+    try {
+      await Auth.forgotPasswordSubmit(username, code, password)
+      navigation.navigate('Sign in')
+    } catch (e) {
+      Alert.alert('Ooops', (e as Error).message)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -36,6 +44,7 @@ export const NewPasswordScreen = () => {
           name="username"
           control={control}
           rules={{ required: 'Username is required' }}
+          defaultValue={username ? username : ""}
         />
 
         <FormInput
@@ -59,11 +68,15 @@ export const NewPasswordScreen = () => {
           }}
         />
 
-        <CustomButton text="Submit" onPress={handleSubmit(onSubmitPressed)} />
+        <CustomButton
+          text="Submit"
+          onPress={handleSubmit(onSubmitPressed)}
+          loading={loading}
+        />
 
         <CustomButton
           text="Back to Sign in"
-          onPress={onSignInPress}
+          onPress={() => navigation.navigate('Sign in')}
           type="TERTIARY"
         />
       </View>
