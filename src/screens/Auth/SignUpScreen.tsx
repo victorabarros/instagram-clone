@@ -31,7 +31,6 @@ export const SignUpScreen = () => {
   const onRegisterPressed = async ({ name, email, password }: SignUpData) => {
     setLoading(true)
     try {
-      console.log({ username: email, password, attributes: { name, email } })
       await Auth.signUp({ username: email, password, attributes: { name, email } })
       navigation.navigate('Confirm email', { username: email })
     } catch (e) {
