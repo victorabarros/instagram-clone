@@ -16,9 +16,10 @@ import { SignInNavigationProp } from '../../types/navigation'
 import { Auth } from 'aws-amplify'
 import { useState } from 'react'
 import { useAuthContext } from '../../contexts/AuthContext'
+import { EMAIL_REGEX } from './SignUpScreen'
 
 type SignInData = {
-  username: string
+  email: string
   password: string
 }
 
@@ -31,10 +32,10 @@ export const SignInScreen = () => {
 
   const { setUser } = useAuthContext()
 
-  const onSignInPressed = async ({ username, password }: SignInData) => {
+  const onSignInPressed = async ({ email, password }: SignInData) => {
     setLoading(true)
     try {
-      const cognitoUser = await Auth.signIn(username, password)
+      const cognitoUser = await Auth.signIn(email, password)
       setUser(cognitoUser)
     } catch (e) {
       Alert.alert('Ooops', (e as Error).message)
@@ -61,10 +62,13 @@ export const SignInScreen = () => {
         />
 
         <FormInput
-          name="username"
-          placeholder="Username"
+          placeholder="Email"
+          name="email"
           control={control}
-          rules={{ required: 'Username is required' }}
+          rules={{
+            required: 'Email is required',
+            pattern: { value: EMAIL_REGEX, message: 'Email is invalid' }
+          }}
         />
 
         <FormInput

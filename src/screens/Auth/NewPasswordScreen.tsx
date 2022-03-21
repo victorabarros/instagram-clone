@@ -6,9 +6,10 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { useForm } from 'react-hook-form'
 import { NewPasswordNavigationProp, NewPasswordRouteProp } from '../../types/navigation'
 import { Auth } from 'aws-amplify'
+import { EMAIL_REGEX } from './SignUpScreen'
 
 type NewPasswordType = {
-  username: string
+  email: string
   code: string
   password: string
 }
@@ -20,12 +21,13 @@ export const NewPasswordScreen = () => {
   const navigation = useNavigation<NewPasswordNavigationProp>()
 
   const route = useRoute<NewPasswordRouteProp>()
-  const username = route.params?.username
+  const routeEmail = route.params?.email
 
-  const onSubmitPressed = async ({ username, code, password }: NewPasswordType) => {
+  const onSubmitPressed = async ({ email, code, password }: NewPasswordType) => {
+    console.log(email, code, password)
     setLoading(true)
     try {
-      await Auth.forgotPasswordSubmit(username, code, password)
+      await Auth.forgotPasswordSubmit(email, code, password)
       navigation.navigate('Sign in')
     } catch (e) {
       Alert.alert('Ooops', (e as Error).message)
@@ -40,11 +42,14 @@ export const NewPasswordScreen = () => {
         <Text style={styles.title}>Reset your password</Text>
 
         <FormInput
-          placeholder="Username"
-          name="username"
+          placeholder="Email"
+          name="email"
           control={control}
-          rules={{ required: 'Username is required' }}
-          defaultValue={username ? username : ""}
+          rules={{
+            required: 'Email is required',
+            pattern: { value: EMAIL_REGEX, message: 'Email is invalid' }
+          }}
+          defaultValue={routeEmail ? routeEmail : ""}
         />
 
         <FormInput

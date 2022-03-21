@@ -6,9 +6,10 @@ import { useNavigation } from '@react-navigation/core'
 import { useForm } from 'react-hook-form'
 import { ForgotPasswordNavigationProp } from '../../types/navigation'
 import { Auth } from 'aws-amplify'
+import { EMAIL_REGEX } from './SignUpScreen'
 
 type ForgotPasswordData = {
-  username: string
+  email: string
 }
 
 export const ForgotPasswordScreen = () => {
@@ -16,15 +17,15 @@ export const ForgotPasswordScreen = () => {
   const { control, handleSubmit } = useForm<ForgotPasswordData>()
   const navigation = useNavigation<ForgotPasswordNavigationProp>()
 
-  const onSendPressed = async ({ username }: ForgotPasswordData) => {
+  const onSendPressed = async ({ email }: ForgotPasswordData) => {
     setLoading(true)
     try {
-      const resp = await Auth.forgotPassword(username)
+      const resp = await Auth.forgotPassword(email)
       Alert.alert(
         "Check your email",
         `The code has been sent to ${resp.CodeDeliveryDetails.Destination}`
       )
-      navigation.navigate('New password', { username })
+      navigation.navigate('New password', { email })
     } catch (e) {
       Alert.alert('Ooops', (e as Error).message)
     } finally {
@@ -38,11 +39,12 @@ export const ForgotPasswordScreen = () => {
         <Text style={styles.title}>Reset your password</Text>
 
         <FormInput
-          name="username"
+          name="email"
           control={control}
-          placeholder="Username"
+          placeholder="Email"
           rules={{
-            required: 'Username is required',
+            required: 'Email is required',
+            pattern: { value: EMAIL_REGEX, message: 'Email is invalid' }
           }}
         />
 

@@ -9,15 +9,12 @@ import { SignUpNavigationProp } from '../../types/navigation'
 import { Auth } from 'aws-amplify'
 import { useState } from 'react'
 
-const EMAIL_REGEX =
+export const EMAIL_REGEX =
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-
-const USERNAME_REGEX = /^[a-zA-Z0-9_]*$/ // alphanumeric and underscore
 
 type SignUpData = {
   name: string
   email: string
-  // username: string
   password: string
   passwordRepeat: string
 }
@@ -32,7 +29,7 @@ export const SignUpScreen = () => {
     setLoading(true)
     try {
       await Auth.signUp({ username: email, password, attributes: { name, email } })
-      navigation.navigate('Confirm email', { username: email })
+      navigation.navigate('Confirm email', { email })
     } catch (e) {
       Alert.alert('Ooops', (e as Error).message)
     } finally {
@@ -69,29 +66,6 @@ export const SignUpScreen = () => {
             },
           }}
         />
-
-        {/*
-        <FormInput
-          name="username"
-          control={control}
-          placeholder="Username"
-          rules={{
-            required: 'Username is required',
-            minLength: {
-              value: 3,
-              message: 'Username should be at least 3 characters long',
-            },
-            maxLength: {
-              value: 24,
-              message: 'Username should be max 24 characters long',
-            },
-            pattern: {
-              value: USERNAME_REGEX,
-              message: 'Username can only contain a-z, 0-9, _',
-            },
-          }}
-        />
-        */}
 
         <FormInput
           name="email"
