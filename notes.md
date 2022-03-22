@@ -32,4 +32,4 @@ https://oblador.github.io/react-native-vector-icons/
 
 ##
 
-- https://academy.notjust.dev/products/instagram-clone/categories/2149798312/posts/2155781928
+https://app.privacypolicies.com/
