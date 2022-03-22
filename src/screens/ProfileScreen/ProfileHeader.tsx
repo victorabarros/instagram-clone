@@ -1,4 +1,5 @@
 import { useNavigation } from "@react-navigation/native"
+import { Auth } from "aws-amplify"
 import React from "react"
 import { Image, StyleSheet, Text, View } from "react-native"
 import user from "../../assets/data/user.json"
@@ -41,7 +42,7 @@ export const ProfileHeader = () => {
       {/* buttons */}
       <View style={styles.buttonsContainer}>
         <InsButton label="Edit Profile" onPress={() => navigation.navigate("EditProfile")} />
-        <InsButton label="Another Button" onPress={() => console.log("button")} />
+        <InsButton label="Sign Out" onPress={() => Auth.signOut()} />
       </View>
     </View>
   )

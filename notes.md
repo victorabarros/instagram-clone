@@ -30,6 +30,6 @@ theme
 vector icons
 https://oblador.github.io/react-native-vector-icons/
 
-##
+## 6.5
 
 https://app.privacypolicies.com/
