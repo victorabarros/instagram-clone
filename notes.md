@@ -1,5 +1,7 @@
 # instagram clone notes
 
+https://github.com/academy-notJust-dev/AcademyInstagram
+
 ## 2.1 Initialize the React Native
 
 https://academy.notjust.dev/products/instagram-clone/categories/2149458147/posts/2154542669
@@ -30,6 +32,12 @@ theme
 vector icons
 https://oblador.github.io/react-native-vector-icons/
 
-## 6.5
+## 6.4 and 6.5
 
-https://app.privacypolicies.com/
+sign in with social medias (facebook and google) using aws amplify plus cognito
+how create privacy policies: https://app.privacypolicies.com/
+
+### 6.6 in app auth
+
+https://docs.amplify.aws/lib/auth/social/q/platform/js/
+https://docs.amplify.aws/lib/auth/social/q/platform/js/#full-samples
