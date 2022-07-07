@@ -38,11 +38,11 @@ export const SignUpScreen = () => {
   }
 
   const onTermsOfUsePressed = () => {
-    console.warn('onTermsOfUsePressed')
+    console.log('onTermsOfUsePressed')
   }
 
   const onPrivacyPressed = () => {
-    console.warn('onPrivacyPressed')
+    console.log('onPrivacyPressed')
   }
 
   return (

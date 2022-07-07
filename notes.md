@@ -21,7 +21,9 @@ ANDROID_SDK_ROOT=/home/victor/Android/Sdk
 sdk.dir=/home/victor/Android/Sdk
 ```
 
-finally run `npx react-native start` and in a separate terminal run `npx react-native run-android`
+### how to run
+
+run `npx react-native start` and in a separate terminal run `npx react-native run-android`
 
 ## 2.2
 
@@ -41,3 +43,12 @@ how create privacy policies: https://app.privacypolicies.com/
 
 https://docs.amplify.aws/lib/auth/social/q/platform/js/
 https://docs.amplify.aws/lib/auth/social/q/platform/js/#full-samples
+
+##
+
+continue from
+https://academy.notjust.dev/products/instagram-clone/categories/2149458658?page=2
+
+## office hours
+
+- question: Suggestion to start as a freelancer? My case already has a job, so it could be more then 10h/week.
