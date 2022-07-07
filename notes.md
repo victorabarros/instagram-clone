@@ -34,6 +34,10 @@ theme
 vector icons
 https://oblador.github.io/react-native-vector-icons/
 
+## 3.12
+
+https://react-hook-form.com/get-started#ReactNative
+
 ## 6.4 and 6.5
 
 sign in with social medias (facebook and google) using aws amplify plus cognito
@@ -44,10 +48,9 @@ how create privacy policies: https://app.privacypolicies.com/
 https://docs.amplify.aws/lib/auth/social/q/platform/js/
 https://docs.amplify.aws/lib/auth/social/q/platform/js/#full-samples
 
-##
+## continue from
 
-continue from
-https://academy.notjust.dev/products/instagram-clone/categories/2149458658?page=2
+https://academy.notjust.dev/products/instagram-clone/categories/2149458658/posts/2154544705 14:40
 
 ## office hours
 

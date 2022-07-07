@@ -1,34 +1,51 @@
 import React from "react"
+import { Controller, useForm } from "react-hook-form"
 import { Image, StyleSheet, Text, TextInput, View } from "react-native"
 import user from "../../../assets/data/user.json"
+import { IUser } from "../../../components/FeedPost"
 import colors from "../../../theme/color"
 
+type IEditableUserFields = "username" | "website" | "bio"
+type IEditableUser = Pick<IUser, IEditableUserFields>
 
-export const EditProfileScreen = () => (
-  <View style={styles.root}>
-    <Image source={{ uri: user.image }} style={styles.userImage} />
-    <Text style={styles.textButton} onPress={() => console.log("change photo")}>Change profile photo</Text>
+export const EditProfileScreen = () => {
+  const { control, handleSubmit, setValue } = useForm<IEditableUser>();
 
-    {[
-      { label: "Name", value: user.name },
-      { label: "Username", value: user.username },
-      { label: "Website", value: user.website },
-      { label: "Bio", value: user.bio },
-    ].map(({ label, value }) => (
-      <View key={`profile-content-${label}`} style={styles.contentBox}>
-        <Text style={styles.contentLabel}>{label}</Text>
-        <TextInput
-          value={value}
-          placeholder={label}
-          multiline
+  return (
+    <View style={styles.root}>
+      <Image source={{ uri: user.image }} style={styles.userImage} />
+      <Text style={styles.textButton} onPress={() => console.log("change photo")}>Change profile photo</Text>
+
+      {[
+        { label: "Username", name: "username" },
+        { label: "Website", name: "website" },
+        { label: "Bio", name: "bio" },
+      ].map(({ label, name }) => (
+        <Controller
+          control={control}
+          name={name as IEditableUserFields}
+          render={({ field: { onChange, value, onBlur } }) => (
+            <View key={`profile-content-${label}`} style={styles.contentBox}>
+              <Text style={styles.contentLabel}>{label}</Text>
+              <TextInput
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                placeholder={label}
+                multiline
+              />
+            </View>
+          )}
         />
-      </View>
-    ))}
+      ))}
 
-    <Text style={styles.textButton} onPress={() => console.log("submit")}>Submit</Text>
-  </View>
-)
-
+      <Text
+        style={styles.textButton}
+        onPress={handleSubmit((data: IEditableUser) => console.log("submit", data))}
+      >Submit</Text>
+    </View>
+  )
+}
 const styles = StyleSheet.create({
   root: {
     flex: 1,
