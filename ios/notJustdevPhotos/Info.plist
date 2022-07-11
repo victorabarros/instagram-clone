@@ -35,6 +35,8 @@
 				</dict>
 			</dict>
 		</dict>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>library permission to change avatar</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
 		<string/>
 		<key>UILaunchStoryboardName</key>

@@ -4,6 +4,7 @@ import { Image, StyleSheet, Text, TextInput, View } from "react-native"
 import user from "../../../assets/data/user.json"
 import { IUser } from "../../../components/FeedPost"
 import colors from "../../../theme/color"
+import { launchImageLibrary } from 'react-native-image-picker'
 
 type IEditableUserFields = "username" | "website" | "bio"
 type IEditableUser = Pick<IUser, IEditableUserFields>
@@ -34,7 +35,17 @@ export const EditProfileScreen = () => {
   return (
     <View style={styles.root}>
       <Image source={{ uri: user.image }} style={styles.userImage} />
-      <Text style={styles.textButton} onPress={() => console.log("change photo")}>Change profile photo</Text>
+      <Text
+        style={styles.textButton}
+        onPress={() => {
+          launchImageLibrary({ mediaType: 'photo' }, ({ didCancel, errorCode, errorMessage, assets }) => {
+            if (!didCancel && !errorCode) {
+              console.log(assets!![0].uri)
+              console.log("TODO save on user entity")
+            }
+          })
+        }}
+      >Change profile photo</Text>
 
       {[
         { label: "Username", name: "username" },
