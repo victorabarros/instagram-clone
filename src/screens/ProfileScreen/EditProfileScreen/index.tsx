@@ -8,6 +8,26 @@ import colors from "../../../theme/color"
 type IEditableUserFields = "username" | "website" | "bio"
 type IEditableUser = Pick<IUser, IEditableUserFields>
 
+const CustomInput = ({ control, name, label }: any) => (
+  <Controller
+    control={control}
+    name={name as IEditableUserFields}
+    render={({ field: { onChange, value, onBlur } }) => (
+      <View style={styles.contentBox}>
+        <Text style={styles.contentLabel}>{label}</Text>
+        <TextInput
+          value={value}
+          onChangeText={onChange}
+          onBlur={onBlur}
+          placeholder={label}
+          multiline
+        />
+      </View>
+    )}
+  />
+)
+
+
 export const EditProfileScreen = () => {
   const { control, handleSubmit, setValue } = useForm<IEditableUser>();
 
@@ -20,24 +40,14 @@ export const EditProfileScreen = () => {
         { label: "Username", name: "username" },
         { label: "Website", name: "website" },
         { label: "Bio", name: "bio" },
-      ].map(({ label, name }) => (
-        <Controller
+      ].map(({ label, name }) =>
+        <CustomInput
+          key={`profile-content-${label}`}
           control={control}
-          name={name as IEditableUserFields}
-          render={({ field: { onChange, value, onBlur } }) => (
-            <View key={`profile-content-${label}`} style={styles.contentBox}>
-              <Text style={styles.contentLabel}>{label}</Text>
-              <TextInput
-                value={value}
-                onChangeText={onChange}
-                onBlur={onBlur}
-                placeholder={label}
-                multiline
-              />
-            </View>
-          )}
+          name={name}
+          label={label}
         />
-      ))}
+      )}
 
       <Text
         style={styles.textButton}
