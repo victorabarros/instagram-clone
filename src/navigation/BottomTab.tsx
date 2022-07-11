@@ -7,6 +7,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { HomeStack } from "./HomeStack";
 import { ProfileStack } from "./ProfileStack";
 import { BottomTabNavigatorParamList } from "../types/navigation";
+// import { SearchTabNavigator } from "./SearchTabNavigator";
 
 const { Navigator, Screen } = createBottomTabNavigator<BottomTabNavigatorParamList>()
 
@@ -14,7 +15,7 @@ export const BottomTab = () => {
   return (
     <Navigator screenOptions={{ tabBarShowLabel: false, headerShown: false, tabBarActiveTintColor: "blue", tabBarInactiveTintColor: "lightgrey" }}>
       <Screen name="HomeStack" component={HomeStack} options={{ tabBarIcon: HomeStackIcon }} />
-      <Screen name="Search" component={() => (<></>)} options={{ tabBarIcon: SearchIcon }} />
+      {/* <Screen name="Search" component={SearchTabNavigator} options={{ tabBarIcon: SearchIcon }} /> */}
       <Screen name="Upload" component={() => (<></>)} options={{ tabBarIcon: UploadIcon }} />
       <Screen name="Notifications" component={() => (<></>)} options={{ tabBarIcon: NotificationIcon }} />
       <Screen name="MyProfile" component={ProfileStack} options={{ tabBarIcon: MyProfileIcon }} />

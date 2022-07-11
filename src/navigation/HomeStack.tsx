@@ -21,4 +21,5 @@ export const HomeStack = () => {
   )
 }
 
-const HeaderTitle = () => <Image source={logo} resizeMode="contain" style={{ width: 150, height: 40 }} />
+const HeaderTitle = () =>
+  <Image source={logo} resizeMode="contain" style={{ width: 150, height: 40 }} />
