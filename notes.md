@@ -38,6 +38,10 @@ https://oblador.github.io/react-native-vector-icons/
 
 https://react-hook-form.com/get-started#ReactNative
 
+## 4.8
+
+`useSafeAreaInsets`
+
 ## 6.4 and 6.5
 
 sign in with social medias (facebook and google) using aws amplify plus cognito
@@ -48,9 +52,22 @@ how create privacy policies: https://app.privacypolicies.com/
 https://docs.amplify.aws/lib/auth/social/q/platform/js/
 https://docs.amplify.aws/lib/auth/social/q/platform/js/#full-samples
 
+## 7.6 Setup Appolo client
+
+const { data, loading, error } = useQuery(gql`...`) => (from apollo client) this whay is no longer necessary useState because of the loading indicator
+
+## 7.8 User unique uername
+
+useLazyQuery https://github.com/academy-notJust-dev/AcademyInstagram/blob/8984a224291eb40340bb2876ab5bfea2be8f6860/src/screens/EditProfileScreen/EditProfileScreen.tsx#L18
+
+## 7.9 Posts CRUD
+
+useMutation frmo @apollo/client
+yarn add react-native-popup-menu
+
 ## continue from
 
-https://academy.notjust.dev/products/instagram-clone/categories/2149458658/posts/2154544705 14:40
+https://academy.notjust.dev/products/instagram-clone/categories/2150248965/posts/2157498386
 
 ## office hours
 
