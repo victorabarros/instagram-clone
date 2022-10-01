@@ -67,7 +67,7 @@ yarn add react-native-popup-menu
 
 ## continue from
 
-https://academy.notjust.dev/products/instagram-clone/categories/2150248965/posts/2157498386
+https://academy.notjust.dev/products/instagram-clone/categories/2150534637/posts/2158608376
 
 ## office hours
 
