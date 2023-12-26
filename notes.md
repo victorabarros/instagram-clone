@@ -65,10 +65,16 @@ useLazyQuery https://github.com/academy-notJust-dev/AcademyInstagram/blob/8984a2
 useMutation frmo @apollo/client
 yarn add react-native-popup-menu
 
+## 9.10 CI/CD
+
+How use github actions to build and publish your server and mobile app.
+https://academy.notjust.dev/products/instagram-clone/categories/2150534637/posts/2158618561
+
 ## continue from
 
-https://academy.notjust.dev/products/instagram-clone/categories/2150534637/posts/2158608376
+https://academy.notjust.dev/products/instagram-clone/categories/2151375607/posts/2161868672
 
 ## office hours
 
 - question: Suggestion to start as a freelancer? My case already has a job, so it could be more then 10h/week.
+- how long does a project can be for free on amplify?
